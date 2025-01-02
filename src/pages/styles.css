@@ -1,0 +1,109 @@
+:root[data-theme="light"] {
+    --text: #050315;
+    --background: #fbfbfe;
+    --primary: #2f27ce;
+    --secondary: #dedcff;
+    --accent: #433bff;
+
+    --gradient: linear-gradient(45deg, var(--primary) 0%, yellow 100%);
+
+}
+:root[data-theme="dark"] {
+    --text: #ebe9fc;
+    --background: #010104;
+    --primary: #3a31d8;
+    --secondary: #020024;
+    --accent: #0600c2;
+
+    --gradient: linear-gradient(45deg, var(--primary) 0%, yellow 100%);
+}
+
+:root{
+    --ff: "Montserrat", sans-serif;
+    --h1: bold clamp(2.5rem, 3vw, 4rem)/1.2em var(--ff); /*clamp(min size, preferred size, max size), peale / on reavahe vist*/
+    --h3: bold 1.5rem/1.5em var(var(--ff));
+    --links: 1rem/1em var(--ff);
+}
+
+html{
+    scroll-snap-type: y mandatory;
+}
+
+body{
+    background-color: var(--background);
+    text-align: center;
+    margin: auto;
+}
+
+div{
+    scroll-snap-align: start;
+}
+
+h1{
+    font: var(--h1);
+    color: white;
+}
+
+h1, h2, h3{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font: var(--accent);
+}
+
+.hero{
+    text-align: center;
+    display: flex;
+    align-items: center; /* y axis */
+    justify-content: center; /* x  axis */
+    flex-direction: column;
+
+    height: calc(100vh - 9px);
+
+    h1{
+        background: var(--gradient);
+        background-clip: text;
+        color: transparent;
+    }
+
+
+    .btn, .btn:visited{
+        background: linear-gradient(black, black) padding-box, /* background only covers the content and padding area of the element, excluding the border.  */
+        linear-gradient(45deg, var(--primary) 0%, var(--secondary) 100%) border-box;
+        border: solid 2px transparent;
+        border-radius: 5px;
+        padding: 12px 24px;
+        margin-top: 15px;
+        opacity: 0.9;
+        filter: blur(0.3px);
+        transition: 0.4s ease-in-out;
+    }
+
+    .btn:hover{
+        border: solid 2px white;
+    }
+
+}
+
+hr{
+    border: none;
+    height: 2px;
+    background: var(--gradient);
+}
+
+.flex-cards{
+    background-color: aliceblue;
+    width: 90%;
+    max-width: 1080px;
+    margin: 100px auto;
+    display: flex;
+    gap: 10px;
+}
+
+.flex-cards > div {
+    flex: 1;
+}

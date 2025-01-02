@@ -3,8 +3,10 @@ import {register} from "../services/userService";
 import InputField from "../components/InputField";
 import SubmitButton from "../components/SubmitButton";
 import ErrorMessage from "../components/ErrorMessage";
+import {useNavigate} from "react-router-dom";
 
 const RegisterPage = () => {
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -21,6 +23,7 @@ const RegisterPage = () => {
             }
             setError("");
             await register({firstName, lastName, email, password});
+            navigate('/files');
         } catch (err) {
             setError(err.message);
         }
