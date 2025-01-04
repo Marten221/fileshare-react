@@ -15,8 +15,8 @@ const SortingDropdown = ({onSortChange}) => {
             <label htmlFor="sorting">Sort by:</label>
             <select id="sorting"
                     onChange={(e) => onSortChange(e.target.value)}
-                    defaultValue="name_Ascending"
-            >
+                    defaultValue="name_ascending">
+
                 {sortingOptions.map((option) => (
                     <option key={option.value} value={option.value}>
                         {option.label}

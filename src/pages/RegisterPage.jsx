@@ -16,7 +16,6 @@ const RegisterPage = () => {
 
     const handleRegister = async () => {
         try {
-            console.log(password, confirmPassword)
             if (password !== confirmPassword) {
                 setError("Passwords don't match")
                 return;

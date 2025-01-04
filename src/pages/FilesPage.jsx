@@ -3,11 +3,12 @@ import InputField from "../components/InputField";
 import SubmitButton from "../components/SubmitButton";
 import {fetchFiles} from "../services/fileService";
 import SortingDropdown from "../components/SortingDropdown";
+import ExtensionDropdown from "../components/ExtensionDropdown";
 
 const FilesPage = () => {
     const [keyword, setKeyword] = useState("");
-    const [sorting, setSorting] = useState("");
-    const [extension, setExtension] = useState("");
+    const [sorting, setSorting] = useState("name_ascending");
+    const [extension, setExtension] = useState("any");
     const [page, setPage] = useState(0);
     const [size, setSize] = useState(15);
     const isLoading = false;
@@ -15,7 +16,8 @@ const FilesPage = () => {
 
     const handleSearch = async () => {
         try {
-            const data = await fetchFiles(keyword, sorting)
+            console.log("data: " + keyword + sorting + extension);
+            const data = await fetchFiles(keyword, sorting, extension)
             const files = data.content
             setFiles(files)
             console.log(files)
@@ -23,10 +25,7 @@ const FilesPage = () => {
             console.log(err)
         }
     };
-
-    const changeSort = (selectedSorting) => {
-        setSorting(selectedSorting)
-    };
+    //handleSearch();
 
     return (
         <>
@@ -36,10 +35,11 @@ const FilesPage = () => {
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
             />
-            <SortingDropdown onSortChange={changeSort} />
-
-
+            <SortingDropdown onSortChange={setSorting} />
             <p>{sorting}</p>
+
+            <ExtensionDropdown onExtensionChange={setExtension}/>
+            <p>{extension}</p>
 
             {files.map((file) =>
                 <p key={file.fileId}>{file.fileName}</p>
