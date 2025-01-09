@@ -62,7 +62,7 @@ const RegisterPage = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <SubmitButton label="Login" onClick={handleRegister} />
+            <SubmitButton label="Register" onClick={handleRegister} />
 
             <ErrorMessage message={error}/>
 

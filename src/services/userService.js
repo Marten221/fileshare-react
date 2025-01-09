@@ -3,10 +3,7 @@ import {handleApiRequest} from "../utils/apiUtils";
 
 export const login = async (user) => {
     const data = await handleApiRequest(() =>
-        apiClient.post('/public/login', {
-            email: user.email,
-            password: user.password,
-        }));
+        apiClient.post('/public/login', user));
 
     const token = data.token;
     if (token) { // TODO: make it a function and store in cookies instead of storage
@@ -16,12 +13,7 @@ export const login = async (user) => {
 
 export const register = async (user) => {
     const data = await handleApiRequest(() =>
-        apiClient.post('/public/register', {
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            password: user.password,
-        }));
+        apiClient.post('/public/register', user));
 
     const token = data.token;
     if (token) {

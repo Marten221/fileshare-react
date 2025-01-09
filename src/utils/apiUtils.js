@@ -1,7 +1,8 @@
 export const handleApiRequest = async (apiCall, message = 'Something went wrong. Please try again') => {
     try {
         const response = await apiCall();
-        return response.data;
+        if (response.data) return response.data;
+        return response;
     } catch (error) {
         if (error.response && error.response.data) {
             throw new Error(error.response.data.message || message);
