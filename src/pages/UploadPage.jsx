@@ -8,6 +8,7 @@ const UploadPage = () => {
     const [customFilename, setCustomFilename] = useState("");
     const [description, setDescription] = useState("");
     const [isPublic, setIsPublic] = useState(false);
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,6 +17,7 @@ const UploadPage = () => {
 
     const handleUpload = async () => {
         try {
+            setLoading(true)
             // Create a FormData object to handle file upload
             const formData = new FormData();
 
@@ -27,6 +29,8 @@ const UploadPage = () => {
 
         }catch (err){
             console.log(err.message)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -57,6 +61,9 @@ const UploadPage = () => {
                 onChange={(e) => setIsPublic(e.target.checked)}
             />
             <SubmitButton label="Upload" type="submit"/>
+            {loading && (
+                <p>Uploading...</p>
+            )}
         </form>
     );
 }

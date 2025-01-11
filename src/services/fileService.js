@@ -28,3 +28,16 @@ export const fetchExensions = async () => {
     return handleApiRequest(apiCall);
 };
 
+export const fetchFileDescription = async (fileId) => {
+    const apiCall = () => apiClient.get(`/filedescription/${fileId}`);
+
+    return handleApiRequest(apiCall)
+}
+
+export const downloadFile = async (fileId) => {
+    const apiCall = () => apiClient.get(`/public/download/${fileId}`, {
+        responseType: 'blob'
+    })
+
+    return handleApiRequest(apiCall)
+};

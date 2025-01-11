@@ -44,27 +44,17 @@ const FilesPage = () => {
                 onChange={(e) => setKeyword(e.target.value)}
             />
             <SortingDropdown onSortChange={setSorting}/>
-            <p>{sorting}</p>
-
             <ExtensionDropdown onExtensionChange={setExtension}/>
-            <p>{extension}</p>
-
             <AmountDropdown
                 onAmountChange={setSize}
                 purpose="Page size"
                 amountList={[10, 15, 20, 25, 30]}
             />
-
             <SubmitButton label="Search" onClick={handleSearch} isLoading={isLoading}/>
-
 
             <div className="card-wrapper">
                 {files.map((file) =>
-                    <FileCard
-                        fileId={file.fileId}
-                        fileName={file.fileName}
-                        fileExt={file.fileExt}
-                        fileSize={file.fileSize}/>
+                    <FileCard file={file}/>
                 )}
             </div>
 
