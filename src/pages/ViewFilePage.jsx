@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {downloadFile, fetchFileDescription} from "../services/fileService";
-import Timestamp from "../components/Timestamp";
 import FileView from "../components/FileView";
 
 const ViewFilePage = () => {
@@ -23,7 +22,7 @@ const ViewFilePage = () => {
         };
 
         fetchData()
-    }, []);
+    }, [fileId]);
 
     const handleDownload = async () => {
         try {

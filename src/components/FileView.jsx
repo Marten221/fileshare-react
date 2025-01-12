@@ -1,5 +1,6 @@
 import React from "react";
 import Timestamp from "./Timestamp";
+import ErrorMessage from "./ErrorMessage";
 
 const FileView = ({handleDownload, file, error, loading}) => {
 
@@ -19,12 +20,12 @@ const FileView = ({handleDownload, file, error, loading}) => {
                 <button onClick={handleDownload}>{loading ? "Loading..." : "Download"}</button>
 
                 {error && (
-                    <p>{error}</p>
+                    <ErrorMessage message={error} />
                 )}
             </div>
         );
     } else {
-        return (<p>You don't have access to this file</p>)
+        return (<ErrorMessage message={"You don't have access to this file"} />)
     }
 
 };

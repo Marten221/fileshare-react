@@ -43,20 +43,22 @@ const UploadPage = () => {
                 onChange={(e) => setFile(e.target.files[0])}
             />
             <InputField
+                id="filename"
                 type="text"
                 placeholder="File name"
                 value={customFilename}
                 onChange={(e) => setCustomFilename(e.target.value)}
             />
             <InputField
+                id="description"
                 type="text"
                 placeholder="Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
             <InputField
+                id="public"
                 type="radio"
-                placeholder="Description"
                 value={isPublic}
                 onChange={(e) => setIsPublic(e.target.checked)}
             />

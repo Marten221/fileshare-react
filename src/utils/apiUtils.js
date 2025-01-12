@@ -5,6 +5,8 @@ export const handleApiRequest = async (apiCall, message = 'Something went wrong.
         if (response.data) return response.data;
         return response;
     } catch (error) {
+        console.log(error)
+        //if (error.message) throw new Error(error.message);
         if (error.response.data.message) {
             throw new Error(error.response.data.message || message);
         }

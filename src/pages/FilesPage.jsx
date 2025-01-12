@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
 import InputField from "../components/InputField";
-import SubmitButton from "../components/SubmitButton";
 import {fetchFiles} from "../services/fileService";
-import SortingDropdown from "../components/SortingDropdown";
-import ExtensionDropdown from "../components/ExtensionDropdown";
-import AmountDropdown from "../components/AmountDropdown";
+import SortingDropdown from "../components/Dropdowns/SortingDropdown";
+import ExtensionDropdown from "../components/Dropdowns/ExtensionDropdown";
+import AmountDropdown from "../components/Dropdowns/AmountDropdown";
 import FileCard from "../components/FileCard";
 import PageIndicator from "../components/PageIndicator/PageIndicator";
 
@@ -12,11 +11,11 @@ const FilesPage = () => {
     const [keyword, setKeyword] = useState("");
     const [sorting, setSorting] = useState("name_ascending");
     const [extension, setExtension] = useState("any");
-    const [page, setPage] = useState(1); // useeffect?
+    const [page, setPage] = useState(1);
     const [size, setSize] = useState(15);
-    const isLoading = false;
     const [files, setFiles] = useState([])
     const [totalPages, setTotalPages] = useState(1)
+    const [showDropdowns, setShowDropdowns] = useState(false)
 
     const handleSearch = async () => {
         try {
@@ -33,28 +32,42 @@ const FilesPage = () => {
 
     useEffect(() => {
         handleSearch();
-    }, [keyword, sorting, extension, size, page]); //If the page variable changes, handleSearch is run
+    }, [keyword, sorting, extension, size, page]); //If a variable changes, handleSearch is run
 
     return (
         <>
-            <InputField
-                type="text"
-                placeholder="Keyword"
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-            />
-            <SortingDropdown onSortChange={setSorting}/>
-            <ExtensionDropdown onExtensionChange={setExtension}/>
-            <AmountDropdown
-                onAmountChange={setSize}
-                purpose="Page size"
-                amountList={[10, 15, 20, 25, 30]}
-            />
-            <SubmitButton label="Search" onClick={handleSearch} isLoading={isLoading}/>
+            <div className="relative">
+                <div className="flex items-center justify-center py-3">
+                    <InputField
+                        id="keyword"
+                        type="text"
+                        placeholder="Keyword"
+                        value={keyword}
+                        onChange={(e) => setKeyword(e.target.value)}
+                    />
+                    <button
+                        className="text-3xl ml-1 text-text"
+                        onClick={() => setShowDropdowns(!showDropdowns)}>&equiv;
+                    </button>
+                </div>
 
-            <div className="card-wrapper">
+                    <div className={`absolute top-full flex flex-col gap-2 left-1/2 -translate-x-1/2 
+                                   bg-background p-2 rounded transition-opacity duration-300
+                                    ${showDropdowns ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+                        <SortingDropdown defaultValue={sorting} onSortChange={setSorting}/>
+                        <ExtensionDropdown defaultValue={extension} onExtensionChange={setExtension}/>
+                        <AmountDropdown
+                            defaultValue={size}
+                            onAmountChange={setSize}
+                            purpose="Page size"
+                            amountList={[10, 15, 20, 25, 30]}
+                        />
+                    </div>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-6 my-4">
                 {files.map((file) =>
-                    <FileCard file={file}/>
+                    <FileCard key={file.fileId} file={file}/>
                 )}
             </div>
 

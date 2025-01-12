@@ -33,30 +33,35 @@ const RegisterPage = () => {
         <div className="auth-container">
             <h2>Register</h2>
             <InputField
+                id="firstname"
                 type="text"
                 placeholder="First name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
             />
             <InputField
+                id="lastname"
                 type="text"
                 placeholder="Last name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
             />
             <InputField
+                id="email"
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
             <InputField
+                id="password"
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
             <InputField
+                id="confirmpassword"
                 type="password"
                 placeholder="Confirm password"
                 value={confirmPassword}

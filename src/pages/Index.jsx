@@ -1,11 +1,10 @@
 import React from "react";
-import "./styles.css"
 
 const IndexPage = () => {
 
     return (
         <>
-            <div className="hero">
+            <div className="flex items-center justify-center">
                 <h1>Share files like never before</h1>
                 <a className="btn" href="/login">Get Started</a>
             </div>
