@@ -4,6 +4,7 @@ import InputField from "../components/InputField";
 import SubmitButton from "../components/SubmitButton";
 import ErrorMessage from "../components/ErrorMessage";
 import {useNavigate} from "react-router-dom";
+import FormContainer from "../components/FormContainer";
 
 const RegisterPage = () => {
     const navigate = useNavigate();
@@ -30,12 +31,14 @@ const RegisterPage = () => {
 
 
     return (
-        <div className="auth-container">
-            <h2>Register</h2>
+        <FormContainer>
+            <h2 className="uppercase">Register</h2>
+            <hr className="border-0.5 w-3/4"/>
             <InputField
                 id="firstname"
                 type="text"
                 placeholder="First name"
+                label="First name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
             />
@@ -43,6 +46,7 @@ const RegisterPage = () => {
                 id="lastname"
                 type="text"
                 placeholder="Last name"
+                label="Last name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
             />
@@ -50,6 +54,7 @@ const RegisterPage = () => {
                 id="email"
                 type="email"
                 placeholder="Email"
+                label="E-Mail Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
@@ -57,6 +62,7 @@ const RegisterPage = () => {
                 id="password"
                 type="password"
                 placeholder="Password"
+                label="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
             />
@@ -64,15 +70,21 @@ const RegisterPage = () => {
                 id="confirmpassword"
                 type="password"
                 placeholder="Confirm password"
+                label="Confirm password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <SubmitButton label="Register" onClick={handleRegister} />
+            <SubmitButton label="Register" onClick={handleRegister}/>
+
+            <button className="underline"
+                    onClick={() => navigate("/login")}>
+                Have an account? Log in
+            </button>
 
             <ErrorMessage message={error}/>
 
-        </div>
-    )
+        </FormContainer>
+    );
 
 };
 

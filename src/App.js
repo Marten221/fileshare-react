@@ -19,6 +19,7 @@ function App() {
                     <Route path="/login" element={<LoginPage/>}></Route>
                     <Route path="/register" element={<RegisterPage/>}></Route>
                     <Route path="/files" element={<FilesPage/>}></Route>
+                    {/*TODO: add protection to route */}
                     <Route path="/upload" element={<UploadPage/>}></Route>
                     <Route path="/file/:fileId" element={<ViewFilePage/>}></Route>
                 </Routes>

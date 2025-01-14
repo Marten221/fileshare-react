@@ -5,7 +5,10 @@ import SortingDropdown from "../components/Dropdowns/SortingDropdown";
 import ExtensionDropdown from "../components/Dropdowns/ExtensionDropdown";
 import AmountDropdown from "../components/Dropdowns/AmountDropdown";
 import FileCard from "../components/FileCard";
-import PageIndicator from "../components/PageIndicator/PageIndicator";
+import PageIndicator from "../components/PageIndicator";
+import {RxHamburgerMenu} from "react-icons/rx";
+import {IoCloudUploadOutline} from "react-icons/io5";
+import {useNavigate} from "react-router-dom";
 
 const FilesPage = () => {
     const [keyword, setKeyword] = useState("");
@@ -16,6 +19,7 @@ const FilesPage = () => {
     const [files, setFiles] = useState([])
     const [totalPages, setTotalPages] = useState(1)
     const [showDropdowns, setShowDropdowns] = useState(false)
+    const navigate = useNavigate();
 
     const handleSearch = async () => {
         try {
@@ -37,7 +41,13 @@ const FilesPage = () => {
     return (
         <>
             <div className="relative">
-                <div className="flex items-center justify-center py-3">
+                <div className="flex flex-wrap items-center justify-center py-3">
+                    <button className="left-3 flex items-center border border-solid border-accent rounded mx-2 px-2 py-1
+                                        hover:bg-accent hover:text-text transition-all duration-300"
+                       onClick={() => navigate(`/upload`)}
+                    >
+                        <IoCloudUploadOutline />
+                    </button>
                     <InputField
                         id="keyword"
                         type="text"
@@ -46,23 +56,23 @@ const FilesPage = () => {
                         onChange={(e) => setKeyword(e.target.value)}
                     />
                     <button
-                        className="text-3xl ml-1 text-text"
-                        onClick={() => setShowDropdowns(!showDropdowns)}>&equiv;
+                        className="text-2xl ml-1 text-text"
+                        onClick={() => setShowDropdowns(!showDropdowns)}><RxHamburgerMenu/>
                     </button>
                 </div>
 
-                    <div className={`absolute top-full flex flex-col gap-2 left-1/2 -translate-x-1/2 
+                <div className={`z-40 absolute top-full flex flex-col gap-2 left-1/2 -translate-x-1/2 
                                    bg-background p-2 rounded transition-opacity duration-300
                                     ${showDropdowns ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-                        <SortingDropdown defaultValue={sorting} onSortChange={setSorting}/>
-                        <ExtensionDropdown defaultValue={extension} onExtensionChange={setExtension}/>
-                        <AmountDropdown
-                            defaultValue={size}
-                            onAmountChange={setSize}
-                            purpose="Page size"
-                            amountList={[10, 15, 20, 25, 30]}
-                        />
-                    </div>
+                    <SortingDropdown defaultValue={sorting} onSortChange={setSorting}/>
+                    <ExtensionDropdown defaultValue={extension} onExtensionChange={setExtension}/>
+                    <AmountDropdown
+                        defaultValue={size}
+                        onAmountChange={setSize}
+                        purpose="Page size"
+                        amountList={[10, 15, 20, 25, 30]}
+                    />
+                </div>
             </div>
 
             <div className="flex flex-wrap justify-center gap-6 my-4">

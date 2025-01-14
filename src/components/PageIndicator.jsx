@@ -1,5 +1,4 @@
-import React, {useEffect} from "react";
-import styles from "./PageIndicator.module.css"
+import React from "react";
 
 const AmountDropdown = ({setPage, totalPages, currentPage}) => {
 
@@ -16,15 +15,15 @@ const AmountDropdown = ({setPage, totalPages, currentPage}) => {
     }
 
     return (
-        <div className={styles.pageIndicator}>
+        <div className="flex justify-center items-center opacity-0 animate-fade-in"
+             style={{ animationDelay: `${2 * 50}ms` }}>
             {currentPage > 1 && (
-                <button className={styles.arrow} onClick={decreasePage}>&#8592;</button>
+                <button className="bg-transparent p-2" onClick={decreasePage}>&#8592;</button>
             )}
 
             <span>{currentPage}</span>
-
             {currentPage < totalPages && (
-                <button className={styles.arrow} onClick={increasePage}>&#8594;</button>
+                <button className="bg-transparent p-2" onClick={increasePage}>&#8594;</button>
             )}
         </div>
     )
