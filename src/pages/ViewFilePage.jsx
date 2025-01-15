@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {downloadFile, fetchFileDescription} from "../services/fileService";
-import FileView from "../components/FileView";
+import FileView from "../components/FileView/FileView";
+import FormContainer from "../components/FormContainer";
 
 const ViewFilePage = () => {
     const {fileId} = useParams();
@@ -16,7 +17,7 @@ const ViewFilePage = () => {
                 setFile(file);
             } catch (error) {
                 setError(error.message);
-            } finally{
+            } finally {
                 setLoading(false)
             }
         };
@@ -28,7 +29,7 @@ const ViewFilePage = () => {
         try {
             setLoading(true);
             const fileBlob = await downloadFile(fileId);
-            const blob = new Blob([fileBlob], { type: 'application/octet-stream' });
+            const blob = new Blob([fileBlob], {type: 'application/octet-stream'});
             const url = window.URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
@@ -38,7 +39,7 @@ const ViewFilePage = () => {
             link.remove();
             window.URL.revokeObjectURL(url);
             setError("")
-        } catch (error){
+        } catch (error) {
             setError(error.message)
         } finally {
             setLoading(false);
@@ -46,12 +47,14 @@ const ViewFilePage = () => {
     };
 
     return (
-        <FileView
-            handleDownload={handleDownload}
-            file={file}
-            error={error}
-            loading={loading}
-        />
+        <FormContainer>
+            <FileView
+                handleDownload={handleDownload}
+                file={file}
+                error={error}
+                loading={loading}
+            />
+        </FormContainer>
     );
 }
 

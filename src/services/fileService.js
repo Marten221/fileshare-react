@@ -29,7 +29,7 @@ export const fetchExensions = async () => {
 };
 
 export const fetchFileDescription = async (fileId) => {
-    const apiCall = () => apiClient.get(`/filedescription/${fileId}`);
+    const apiCall = () => apiClient.get(`/public/filedescription/${fileId}`);
 
     return handleApiRequest(apiCall)
 }
