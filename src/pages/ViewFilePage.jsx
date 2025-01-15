@@ -3,6 +3,8 @@ import {useParams} from "react-router-dom";
 import {downloadFile, fetchFileDescription} from "../services/fileService";
 import FileView from "../components/FileView/FileView";
 import FormContainer from "../components/FormContainer";
+import { GoGear } from "react-icons/go";
+import { TiDeleteOutline } from "react-icons/ti";
 
 const ViewFilePage = () => {
     const {fileId} = useParams();

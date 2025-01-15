@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import InputField from "../components/InputField";
 import {fetchFiles} from "../services/fileService";
 import SortingDropdown from "../components/Dropdowns/SortingDropdown";
@@ -19,6 +19,8 @@ const FilesPage = () => {
     const [files, setFiles] = useState([])
     const [totalPages, setTotalPages] = useState(1)
     const [showDropdowns, setShowDropdowns] = useState(false)
+    const dropdownRef = useRef(null);
+    const burgerButtonRef = useRef(null);
     const navigate = useNavigate();
 
     const handleSearch = async () => {
@@ -37,6 +39,21 @@ const FilesPage = () => {
     useEffect(() => {
         handleSearch();
     }, [keyword, sorting, extension, size, page]); //If a variable changes, handleSearch is run
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target) &&
+                burgerButtonRef.current && !burgerButtonRef.current.contains(event.target)) {
+                setShowDropdowns(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside)
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
         <>
@@ -57,13 +74,15 @@ const FilesPage = () => {
                     />
                     <button
                         className="text-2xl ml-1 text-text"
+                        ref={burgerButtonRef}
                         onClick={() => setShowDropdowns(!showDropdowns)}><RxHamburgerMenu/>
                     </button>
                 </div>
 
                 <div className={`z-40 absolute top-full flex flex-col gap-2 left-1/2 -translate-x-1/2 
                                    bg-background p-2 rounded transition-opacity duration-300
-                                    ${showDropdowns ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+                                    ${showDropdowns ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                     ref={dropdownRef}>
                     <SortingDropdown defaultValue={sorting} onSortChange={setSorting}/>
                     <ExtensionDropdown defaultValue={extension} onExtensionChange={setExtension}/>
                     <AmountDropdown

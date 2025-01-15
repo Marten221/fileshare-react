@@ -40,20 +40,23 @@ const UploadPage = () => {
         }
     }
 
-
     return (
         <FormContainer>
             <form className="flex flex-col gap-2"
                   onSubmit={handleSubmit}>
-                <input
-                    required
+
+                <InputField
+                    id="file"
                     type="file"
+                    label="Upload file"
                     onChange={(e) => setFile(e.target.files[0])}
                 />
+
                 <InputField
                     id="filename"
                     type="text"
                     placeholder="File name"
+                    label="File name"
                     value={customFilename}
                     onChange={(e) => setCustomFilename(e.target.value)}
                 />
@@ -61,11 +64,13 @@ const UploadPage = () => {
                     id="description"
                     type="text"
                     placeholder="Description"
+                    label="Description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
 
-                <ToggleButton handleToggle={(e) => setIsPublic(e.target.checked)} state={isPublic}><p className="mx-2">Public</p>
+                <ToggleButton handleToggle={(e) => setIsPublic(e.target.checked)} state={isPublic}><p
+                    className="mx-2">Public</p>
                 </ToggleButton>
                 <SubmitButton label="Upload" type="submit"/>
                 {loading && (

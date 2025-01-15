@@ -20,8 +20,7 @@ const AmountDropdown = ({setPage, totalPages, currentPage}) => {
         <div className="flex justify-center items-center opacity-0 animate-fade-in mb-3"
              style={{animationDelay: `${2 * 50}ms`}}>
 
-
-            <button className={`bg-transparent p-2 ${currentPage > 1 ? "" : "cursor-not-allowed"}`}
+            <button className={`bg-transparent p-2 ${currentPage > 1 ? "" : "cursor-default opacity-0"}`}
                     onClick={decreasePage}>
                 <IoIosArrowBack />
             </button>
@@ -33,14 +32,11 @@ const AmountDropdown = ({setPage, totalPages, currentPage}) => {
                 value={currentPage}
             />
 
-            <button className={`bg-transparent p-2 ${currentPage < totalPages ? "" : "cursor-not-allowed"}`}
+            <button className={`bg-transparent p-2 ${currentPage < totalPages ? "" : "cursor-default opacity-0"}`}
                     onClick={increasePage}>
                 <IoIosArrowForward />
             </button>
-
-
         </div>
-
     )
 };
 

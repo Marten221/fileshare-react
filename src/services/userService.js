@@ -2,8 +2,8 @@ import apiClient from "./apiClient";
 import {handleApiRequest} from "../utils/apiUtils";
 
 export const login = async (user) => {
-    const data = await handleApiRequest(() =>
-        apiClient.post('/public/login', user));
+    const apiCall = () => apiClient.post('/public/login', user);
+    const data = await handleApiRequest(apiCall);
 
     const token = data.token;
     if (token) { // TODO: make it a function and store in cookies instead of storage
@@ -12,8 +12,8 @@ export const login = async (user) => {
 };
 
 export const register = async (user) => {
-    const data = await handleApiRequest(() =>
-        apiClient.post('/public/register', user));
+    const apiCall = () => apiClient.post('/public/register', user)
+    const data = await handleApiRequest(apiCall);
 
     const token = data.token;
     if (token) {
@@ -21,3 +21,7 @@ export const register = async (user) => {
     }
 };
 
+export const getDiskspace = async () => {
+    const apiCall = () => apiClient.get('diskspace');
+    return await handleApiRequest(apiCall);
+};
