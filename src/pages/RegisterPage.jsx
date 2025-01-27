@@ -42,7 +42,7 @@ const RegisterPage = () => {
                 placeholder="Registration code"
                 label="Registration code"
                 value={registrationCode}
-                onChange={(e) =>setRegistrationCode(e.target.value)}
+                onChange={(e) => setRegistrationCode(e.target.value)}
             />
             <InputField
                 id="firstname"
