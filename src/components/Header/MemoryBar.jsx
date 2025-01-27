@@ -17,7 +17,9 @@ const MemoryBar = () => {
     const handleCall = async () => {
         try {
             const data = await getDiskspace()
-            setPercentage(data.usableSpace / data.totalSpace * 100)
+            const totalSpace = data.totalSpace;
+            const availableSPace = totalSpace - data.usedSpace;
+            setPercentage(availableSPace / totalSpace * 100)
         } catch (err) {
             setError(err.message)
         }
@@ -33,7 +35,7 @@ const MemoryBar = () => {
         <div className="relative w-24 h-2 mx-4">
         <span className="w-24 h-2 mx-2 rounded bg-gradient-to-r from-green-500 to-red-500 absolute">
           <span
-              className="h-2 bg-gray-700 absolute right-0 rounded-r"
+              className={`h-2 bg-gray-700 absolute right-0 rounded-r ${percentage < 98 ? "" : "rounded-l"}`} // if the progress bar is fully covered, rounded-l makes it look nicer.
               style={{width: `${percentage}%`}}
           ></span>
         </span>

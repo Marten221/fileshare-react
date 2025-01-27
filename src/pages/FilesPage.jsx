@@ -78,7 +78,7 @@ const FilesPage = () => {
                         className="text-2xl ml-1 text-text"
                         ref={burgerButtonRef}
                         onClick={() => setShowDropdowns(!showDropdowns)}><RxHamburgerMenu/>
-                    </button>
+                    </button> {/* TODO: move burger menu to a separate component.*/}
                 </div>
 
                 <div className={`z-40 absolute top-full flex flex-col gap-2 left-1/2 -translate-x-1/2 

@@ -7,7 +7,7 @@ export const handleApiRequest = async (apiCall, message = 'Something went wrong.
     } catch (error) {
         console.log(error)
         //if (error.message) throw new Error(error.message);
-        if (error.response.data.message) {
+        if (error.response && error.response.data.message) {
             throw new Error(error.response.data.message || message);
         }
         if (error.status === 401) {
