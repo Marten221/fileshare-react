@@ -1,6 +1,6 @@
 import React from "react";
-import MemoryBar from "../MemoryBar";
-import UserIcon from "../UserIcon";
+import MemoryBar from "./MemoryBar";
+import UserIcon from "./UserIcon";
 
 const Header = () => {
 

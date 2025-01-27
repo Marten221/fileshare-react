@@ -12,7 +12,6 @@ import Header from "./components/Header/Header";
 function App() {
     return (
         <>
-            <Header></Header>
             <Router>
                 <Routes>
                     <Route path="/" element={<IndexPage/>}></Route>

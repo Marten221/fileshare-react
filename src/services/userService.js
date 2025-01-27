@@ -11,8 +11,12 @@ export const login = async (user) => {
     }
 };
 
-export const register = async (user) => {
-    const apiCall = () => apiClient.post('/public/register', user)
+export const register = async (registrationCode, user) => {
+    const apiCall = () => apiClient.post('/public/register', user, {
+        headers: {
+            'X-Registration-Code': registrationCode,
+        }
+    })
     const data = await handleApiRequest(apiCall);
 
     const token = data.token;

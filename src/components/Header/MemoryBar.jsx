@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {getDiskspace} from "../services/userService";
+import {getDiskspace} from "../../services/userService";
 
 const MemoryBar = () => {
     //const percentage = (358485172224 / 511310819328) * 100;

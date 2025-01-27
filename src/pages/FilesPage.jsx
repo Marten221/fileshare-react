@@ -9,6 +9,7 @@ import PageIndicator from "../components/PageIndicator";
 import {RxHamburgerMenu} from "react-icons/rx";
 import {IoCloudUploadOutline} from "react-icons/io5";
 import {useNavigate} from "react-router-dom";
+import Header from "../components/Header/Header";
 
 const FilesPage = () => {
     const [keyword, setKeyword] = useState("");
@@ -57,6 +58,7 @@ const FilesPage = () => {
 
     return (
         <>
+            <Header></Header>
             <div className="relative">
                 <div className="flex flex-wrap items-center justify-center py-3">
                     <button className="left-3 flex items-center border border-solid border-accent rounded mx-2 px-2 py-1
@@ -81,7 +83,7 @@ const FilesPage = () => {
 
                 <div className={`z-40 absolute top-full flex flex-col gap-2 left-1/2 -translate-x-1/2 
                                    bg-background p-2 rounded transition-opacity duration-300
-                                    ${showDropdowns ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                                    ${showDropdowns ? "opacity-100 visible" : "opacity-0 invisible"} border border-secondary`}
                      ref={dropdownRef}>
                     <SortingDropdown defaultValue={sorting} onSortChange={setSorting}/>
                     <ExtensionDropdown defaultValue={extension} onExtensionChange={setExtension}/>

@@ -8,6 +8,7 @@ import FormContainer from "../components/FormContainer";
 
 const RegisterPage = () => {
     const navigate = useNavigate();
+    const [registrationCode, setRegistrationCode] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -16,24 +17,33 @@ const RegisterPage = () => {
     const [error, setError] = useState("");
 
     const handleRegister = async () => {
+        setError("");
         try {
             if (password !== confirmPassword) {
                 setError("Passwords don't match")
                 return;
             }
             setError("");
-            await register({firstName, lastName, email, password});
+            await register(registrationCode, {firstName, lastName, email, password});
             navigate('/files');
         } catch (err) {
             setError(err.message);
         }
     };
 
-
+//TODO: Input validation.
     return (
         <FormContainer>
             <h2 className="uppercase">Register</h2>
             <hr className="border-0.5 w-3/4"/>
+            <InputField
+                id="registrationcode"
+                type="text"
+                placeholder="Registration code"
+                label="Registration code"
+                value={registrationCode}
+                onChange={(e) =>setRegistrationCode(e.target.value)}
+            />
             <InputField
                 id="firstname"
                 type="text"
