@@ -9,22 +9,19 @@ import FormContainer from "../components/FormContainer";
 const RegisterPage = () => {
     const navigate = useNavigate();
     const [registrationCode, setRegistrationCode] = useState("")
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [user, setUser] = useState({firstName: "", lastName: "", email: "", password: ""})
     const [confirmPassword, setConfirmPassword] = useState("")
     const [error, setError] = useState("");
 
     const handleRegister = async () => {
         setError("");
         try {
-            if (password !== confirmPassword) {
+            if (user.password !== confirmPassword) {
                 setError("Passwords don't match")
                 return;
             }
             setError("");
-            await register(registrationCode, {firstName, lastName, email, password});
+            await register(registrationCode, user);
             navigate('/files');
         } catch (err) {
             setError(err.message);
@@ -49,32 +46,32 @@ const RegisterPage = () => {
                 type="text"
                 placeholder="First name"
                 label="First name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                value={user.firstName}
+                onChange={(e) => setUser({...user, firstName: e.target.value})}
             />
             <InputField
                 id="lastname"
                 type="text"
                 placeholder="Last name"
                 label="Last name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                value={user.lastName}
+                onChange={(e) => setUser({...user, lastName: e.target.value})}
             />
             <InputField
                 id="email"
                 type="email"
                 placeholder="Email"
                 label="E-Mail Address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={user.email}
+                onChange={(e) => setUser({...user, email: e.target.value})}
             />
             <InputField
                 id="password"
                 type="password"
                 placeholder="Password"
                 label="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={user.password}
+                onChange={(e) => setUser({...user, password: e.target.value})}
             />
             <InputField
                 id="confirmpassword"

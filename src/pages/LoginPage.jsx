@@ -14,6 +14,7 @@ const LoginPage = () => {
 
     const handleLogin = async () => {
         setIsLoading(true)
+        setError("")
         try {
             await login(credentials)
             navigate("/files")

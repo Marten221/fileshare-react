@@ -10,6 +10,7 @@ import {RxHamburgerMenu} from "react-icons/rx";
 import {IoCloudUploadOutline} from "react-icons/io5";
 import {useNavigate} from "react-router-dom";
 import Header from "../components/Header/Header";
+import {useQuery} from "@tanstack/react-query";
 
 const FilesPage = () => {
     const [keyword, setKeyword] = useState("");
@@ -24,23 +25,21 @@ const FilesPage = () => {
     const burgerButtonRef = useRef(null);
     const navigate = useNavigate();
 
+
     const handleSearch = async () => {
-        try {
-            console.log("data: " + keyword + sorting + extension + size + page);
-            const data = await fetchFiles(keyword, sorting, extension, size, page - 1)
-            const files = data.content
-            setFiles(files)
-            setTotalPages(data.totalPages)
-            console.log(data)
-        } catch (err) {
-            console.log(err)
-        }
+        const data = await fetchFiles(keyword, sorting, extension, size, page - 1)
+        const files = data.content
+        setFiles(files)
+        setTotalPages(data.totalPages)
     };
 
-    useEffect(() => {
-        handleSearch();
-    }, [keyword, sorting, extension, size, page]); //If a variable changes, handleSearch is run
+    const {error} = useQuery({
+        queryKey: ['files', keyword, sorting, extension, size, page],
+        queryFn: handleSearch
+    });
 
+
+    //For closing the sorting menu when clicking outside of it or on the menu icon again
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target) &&
@@ -63,9 +62,9 @@ const FilesPage = () => {
                 <div className="flex flex-wrap items-center justify-center py-3">
                     <button className="left-3 flex items-center border border-solid border-accent rounded mx-2 px-2 py-1
                                         hover:bg-accent hover:text-text transition-all duration-300"
-                       onClick={() => navigate(`/upload`)}
+                            onClick={() => navigate(`/upload`)}
                     >
-                        <IoCloudUploadOutline />
+                        <IoCloudUploadOutline/>
                     </button>
                     <InputField
                         id="keyword"
@@ -78,12 +77,13 @@ const FilesPage = () => {
                         className="text-2xl ml-1 text-text"
                         ref={burgerButtonRef}
                         onClick={() => setShowDropdowns(!showDropdowns)}><RxHamburgerMenu/>
-                    </button> {/* TODO: move burger menu to a separate component.*/}
+                    </button>
+                    {/* TODO: move burger menu to a separate component.*/}
                 </div>
 
                 <div className={`z-40 absolute top-full flex flex-col gap-2 left-1/2 -translate-x-1/2 
-                                   bg-background p-2 rounded transition-opacity duration-300
-                                    ${showDropdowns ? "opacity-100 visible" : "opacity-0 invisible"} border border-secondary`}
+                                   bg-secondary p-2 rounded transition-opacity duration-300
+                                    ${showDropdowns ? "opacity-100 visible" : "opacity-0 invisible"}`}
                      ref={dropdownRef}>
                     <SortingDropdown defaultValue={sorting} onSortChange={setSorting}/>
                     <ExtensionDropdown defaultValue={extension} onExtensionChange={setExtension}/>
