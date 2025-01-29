@@ -26,6 +26,20 @@ export const register = async (registrationCode, user) => {
 };
 
 export const getDiskspace = async () => {
-    const apiCall = () => apiClient.get('diskspace');
+    const apiCall = () => apiClient.get('/diskspace');
     return await handleApiRequest(apiCall);
+};
+
+export const getLoginStatus = async () => {
+    const apiCall = () => apiClient.get('/public/loginstatus')
+    return await handleApiRequest(apiCall);
+};
+
+export const getUserInfo = async () => {
+    const apiCall = () => apiClient.get('/userinfo');
+    return await handleApiRequest(apiCall);
+};
+
+export const logOut = () => {
+    localStorage.removeItem('authToken');
 };

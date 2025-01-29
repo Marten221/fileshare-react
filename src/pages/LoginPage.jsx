@@ -5,6 +5,7 @@ import SubmitButton from "../components/SubmitButton";
 import {login} from "../services/userService";
 import ErrorMessage from "../components/ErrorMessage";
 import FormContainer from "../components/FormContainer";
+import {useQuery} from "@tanstack/react-query";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -49,7 +50,7 @@ const LoginPage = () => {
                     onClick={() => navigate("/register")}>
                 Don't have an account? Sign up
             </button>
-            {error && <ErrorMessage message={error}></ErrorMessage>}
+            {error && <ErrorMessage message={error} />}
         </FormContainer>
     );
 };
