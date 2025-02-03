@@ -1,15 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useParams} from "react-router-dom";
 import {downloadFile, fetchFileDescription} from "../services/fileService";
 import FileView from "../components/FileView/FileView";
 import FormContainer from "../components/FormContainer";
-import {GoGear} from "react-icons/go";
-import {TiDeleteOutline} from "react-icons/ti";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import ErrorMessage from "../components/ErrorMessage";
+import SubmitButton from "../components/SubmitButton";
+import EditFile from "../EditFile";
 
 const ViewFilePage = () => {
     const {fileId} = useParams();
+    const [isEditing, setIsEditing] = useState(false)
 
 
     const {data: fileDescription, isError, error, isFetched} = useQuery({
@@ -46,6 +47,14 @@ const ViewFilePage = () => {
         )
     }
 
+    if (isEditing) {
+        return (
+            <FormContainer>
+                <EditFile fileDescription={fileDescription} />
+            </FormContainer>
+        )
+    }
+
     return (
         <FormContainer>
             <FileView
@@ -53,6 +62,15 @@ const ViewFilePage = () => {
                 file={fileDescription}
                 isFetched={isFetched}
             />
+
+            {fileDescription?.owner && (
+                <SubmitButton
+                    label="edit"
+                    color="edit"
+                    onClick={() => setIsEditing(true)}
+                />
+            )}
+
         </FormContainer>
     );
 }
