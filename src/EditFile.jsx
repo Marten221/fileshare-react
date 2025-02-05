@@ -35,12 +35,21 @@ const EditFile = ({fileDescription}) => {
         },
     })
 
+    const handleDelete = () => {
+        console.log("delete function called")
+        const confirmed = window.confirm("Are you sure you want to delete this file?\n" +
+            "This action can't be undone.")
+        if (confirmed) {
+            deleteFile(updatedFile.fileId);
+            navigate('/files')
+        }
+    }
+
     const deleteMutation = useMutation({
-        mutationFn: () => deleteFile(updatedFile.fileId),
+        mutationFn: handleDelete,
         onError: (error) => {
             alert(error?.message);
         },
-        onSuccess: () => navigate('/files')
     })
 
 
