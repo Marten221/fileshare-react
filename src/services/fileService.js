@@ -41,3 +41,24 @@ export const downloadFile = async (fileId) => {
 
     return handleApiRequest(apiCall)
 };
+
+export const updateFile = async (updatedFile) => {
+    const formData = new FormData();
+
+    //If the user did not upload a file, don't include it in the update.
+    if (updatedFile.file) formData.append('file', updatedFile.file);
+    formData.append('fileId', updatedFile.fileId);
+    formData.append('customFilename', updatedFile.customFilename);
+    formData.append('description', updatedFile.description);
+    formData.append('public', updatedFile.public);
+
+    const apiCall = () => apiClient.put('/update', formData)
+
+    return handleApiRequest(apiCall);
+};
+
+export const deleteFile = async (fileId) => {
+    const apiCall = () => apiClient.delete(`/delete/${fileId}`)
+
+    return handleApiRequest(apiCall);
+}

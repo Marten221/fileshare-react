@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {createFile} from "../services/fileService";
 import InputField from "../components/InputField";
-import SubmitButton from "../components/SubmitButton";
+import Button from "../components/Button";
 import FormContainer from "../components/FormContainer";
 import ToggleButton from "../components/ToggleButton";
 import ErrorMessage from "../components/ErrorMessage";
@@ -69,10 +69,13 @@ const UploadPage = () => {
                     onChange={(e) => setDescription(e.target.value)}
                 />
 
-                <ToggleButton handleToggle={(e) => setIsPublic(e.target.checked)} state={isPublic}><p
-                    className="mx-2">Public</p>
+                <ToggleButton
+                    handleToggle={(e) => setIsPublic(e.target.checked)}
+                    state={isPublic}>
+                    <p className="mx-2">Public</p>
                 </ToggleButton>
-                <SubmitButton label="Upload" type="submit"/>
+
+                <Button label="Upload" type="submit"/>
                 {loading && (
                     <p>Uploading...</p>
                 )}

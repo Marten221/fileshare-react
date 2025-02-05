@@ -11,6 +11,7 @@ module.exports = {
                 'primary': '#3a31d8',
                 'secondary': '#020024',
                 'accent': '#0600c2',
+                'error': "#DC2626",
                 'edit': '#4D5160'
             },
             fontFamily: {

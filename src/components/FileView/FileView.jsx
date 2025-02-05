@@ -2,7 +2,7 @@ import React from "react";
 import Timestamp from "../Timestamp";
 import ErrorMessage from "../ErrorMessage";
 import {MdAttachFile} from "react-icons/md";
-import SubmitButton from "../SubmitButton";
+import Button from "../Button";
 import {CiLock} from "react-icons/ci";
 import {CiUnlock} from "react-icons/ci";
 import P2 from "../P2";
@@ -37,7 +37,7 @@ const FileView = ({downloadMutation, file, isFetched}) => {
             )}
 
 
-            <SubmitButton onClick={() => downloadMutation.mutate()} label={isFetched ? "Download" : "Loading..."}></SubmitButton>
+            <Button onClick={() => downloadMutation.mutate()} label={isFetched ? "Download" : "Loading..."}></Button>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {register} from "../services/userService";
 import InputField from "../components/InputField";
-import SubmitButton from "../components/SubmitButton";
+import Button from "../components/Button";
 import ErrorMessage from "../components/ErrorMessage";
 import {useNavigate} from "react-router-dom";
 import FormContainer from "../components/FormContainer";
@@ -81,7 +81,7 @@ const RegisterPage = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <SubmitButton label="Register" onClick={handleRegister}/>
+            <Button label="Register" onClick={handleRegister}/>
 
             <button className="underline"
                     onClick={() => navigate("/login")}>

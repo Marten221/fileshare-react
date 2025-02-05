@@ -5,7 +5,7 @@ import FileView from "../components/FileView/FileView";
 import FormContainer from "../components/FormContainer";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import ErrorMessage from "../components/ErrorMessage";
-import SubmitButton from "../components/SubmitButton";
+import Button from "../components/Button";
 import EditFile from "../EditFile";
 
 const ViewFilePage = () => {
@@ -42,7 +42,9 @@ const ViewFilePage = () => {
     if (isError) {
         return (
             <FormContainer>
-                <ErrorMessage message={error.message}/>
+                <ErrorMessage
+                    message={error.message}
+                />
             </FormContainer>
         )
     }
@@ -50,7 +52,9 @@ const ViewFilePage = () => {
     if (isEditing) {
         return (
             <FormContainer>
-                <EditFile fileDescription={fileDescription} />
+                <EditFile
+                    fileDescription={fileDescription}
+                />
             </FormContainer>
         )
     }
@@ -64,7 +68,7 @@ const ViewFilePage = () => {
             />
 
             {fileDescription?.owner && (
-                <SubmitButton
+                <Button
                     label="edit"
                     color="edit"
                     onClick={() => setIsEditing(true)}

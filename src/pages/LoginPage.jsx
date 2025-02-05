@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import InputField from "../components/InputField";
-import SubmitButton from "../components/SubmitButton";
+import Button from "../components/Button";
 import {login} from "../services/userService";
 import ErrorMessage from "../components/ErrorMessage";
 import FormContainer from "../components/FormContainer";
@@ -45,7 +45,7 @@ const LoginPage = () => {
                 value={credentials.password}
                 onChange={(e) => setCredentials({...credentials, password: e.target.value})}
             />
-            <SubmitButton label="Login" onClick={handleLogin} isLoading={isLoading}/>
+            <Button label="Login" onClick={handleLogin} isLoading={isLoading}/>
             <button className="underline"
                     onClick={() => navigate("/register")}>
                 Don't have an account? Sign up
