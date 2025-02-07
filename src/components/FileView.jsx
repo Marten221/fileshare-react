@@ -12,10 +12,10 @@ const FileView = ({downloadMutation, file, isFetched}) => {
     }
 
     return (
-        <div className="flex flex-col justify-center items-center gap-2">
+        <div className="flex flex-col items-center justify-center gap-2">
             <h2 className="text-2xl font-bold">{file.fileName}.{file.fileExt}</h2>
 
-            <div className="flex gap-6 items-center">
+            <div className="flex items-center gap-6">
                 <Timestamp timestamp={file.timestamp}/>
                 <P2>
                     <MdAttachFile/>{file.fileSize}
@@ -28,9 +28,9 @@ const FileView = ({downloadMutation, file, isFetched}) => {
             </div>
 
             {file.description && (
-                <div className="flex flex-col self-start my-6 w-full">
+                <div className="my-6 flex w-full flex-col self-start">
                     <P2>Description:</P2>
-                    <p className="border border-accent rounded px-2 py-1 mt-1">{file.description}</p>
+                    <p className="mt-1 rounded border px-2 py-1 border-accent">{file.description}</p>
                 </div>
             )}
 

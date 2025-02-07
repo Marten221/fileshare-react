@@ -27,7 +27,7 @@ const LoginPage = () => {
     return (
         <FormContainer>
             <h2 className="uppercase">Log in to your account</h2>
-            <hr className="border-0.5 w-3/4"/>
+            <hr className="w-3/4 border-0.5"/>
             <InputField
                 id="email"
                 type="email"

@@ -32,7 +32,7 @@ const RegisterPage = () => {
     return (
         <FormContainer>
             <h2 className="uppercase">Register</h2>
-            <hr className="border-0.5 w-3/4"/>
+            <hr className="w-3/4 border-0.5"/>
             <InputField
                 id="registrationcode"
                 type="text"

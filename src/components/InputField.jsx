@@ -3,7 +3,7 @@ import React from "react";
 const InputField = ({id, type, placeholder, label, value, onChange}) => {
     return (
         <div className="flex flex-col">
-            {label && (<label className="text-xs mb-1"
+            {label && (<label className="mb-1 text-xs"
                               htmlFor={id}>{label}:</label>)}
             <input
                 className="bg-secondary pl-2 w-64 py-1 rounded border

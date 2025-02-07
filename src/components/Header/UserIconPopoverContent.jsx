@@ -17,10 +17,10 @@ const UserIconPopoverContent = ({loggedIn}) => {
     };
 
     if (loggedIn) return (
-        <div className="bg-secondary p-2 m-3 flex flex-col gap-3 border border-primary rounded">
+        <div className="m-3 flex flex-col gap-3 rounded border p-2 bg-secondary border-primary">
             {!isLoading && (<p>Hello, {data.firstName}</p>)}
             <button
-                className="border border-primary rounded"
+                className="rounded border border-primary"
                 onClick={handleLogout}
             >
                 Log out
@@ -29,10 +29,10 @@ const UserIconPopoverContent = ({loggedIn}) => {
     )
 
     return (
-        <div className="bg-secondary p-2 m-3 flex flex-col gap-3 border border-primary rounded">
+        <div className="m-3 flex flex-col gap-3 rounded border p-2 bg-secondary border-primary">
             <p>Not logged in</p>
             <button
-                className="border border-primary rounded"
+                className="rounded border border-primary"
                 onClick={() => navigate("/login")}
             >
                 Log in

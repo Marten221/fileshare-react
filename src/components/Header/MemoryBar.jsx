@@ -29,7 +29,7 @@ const MemoryBar = () => {
             isOpen={open}
             positions={['bottom', 'left']}
             content={
-                <div className="bg-secondary border border-primary rounded p-2 m-3">
+                <div className="m-3 rounded border p-2 bg-secondary border-primary">
                     <P2>Used memory: {data.usedMemoryHumanReadable}</P2>
                     <P2>Available memory: {data.totalMemoryHumanReadable}</P2>
                 </div>
@@ -38,8 +38,8 @@ const MemoryBar = () => {
             <div
                 onMouseEnter={() => setOpen(true)}
                 onMouseLeave={() => setOpen(false)}
-                className="relative w-24 h-2 mx-4">
-            <span className="w-24 h-2 mx-2 rounded bg-gradient-to-r from-green-500 to-red-500 absolute">
+                className="relative mx-4 h-2 w-24">
+            <span className="absolute mx-2 h-2 w-24 rounded bg-gradient-to-r from-green-500 to-red-500">
               <span
                   className={`h-2 bg-gray-700 absolute right-0 rounded-r ${percentage < 98 ? "" : "rounded-l"}`} // if the progress bar is fully covered, rounded-l makes it look nicer.
                   style={{width: `${percentage}%`}}

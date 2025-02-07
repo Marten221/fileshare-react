@@ -17,7 +17,7 @@ const FileCard = ({file}) => {
 
             <div className="flex flex-col items-center justify-center">
                 <h3 className="text-lg">{file.fileName}.{file.fileExt}</h3>
-                <div className="flex gap-3 mt-3 mb-1">
+                <div className="mt-3 mb-1 flex gap-3">
                     <Timestamp timestamp={file.timestamp}></Timestamp>
                     <P2>
                         <MdAttachFile/>{file.fileSize}

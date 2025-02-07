@@ -4,7 +4,7 @@ import React from "react";
 const P2 = ({children}) => {
 
     return (
-        <p className="text-sm font-thin flex items-center">
+        <p className="flex items-center text-sm font-thin">
             {children}
         </p>
     )

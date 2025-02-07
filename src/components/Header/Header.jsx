@@ -13,12 +13,12 @@ const Header = () => {
 
 
     if (!isLoading) return (
-        <div className="flex items-center justify-between h-12 bg-secondary">
+        <div className="flex h-12 items-center justify-between bg-secondary">
             <a
                 className="mx-4"
                 href="/files"
             >FileShare</a>
-            <div className="flex items-center mx-4">
+            <div className="mx-4 flex items-center">
                 {data.loggedIn && (<MemoryBar />)}
                 <UserIcon loggedIn={data.loggedIn}/>
             </div>

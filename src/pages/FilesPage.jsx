@@ -75,7 +75,7 @@ const FilesPage = () => {
                         onChange={(e) => setKeyword(e.target.value)}
                     />
                     <button
-                        className="text-2xl ml-1 text-text"
+                        className="ml-1 text-2xl text-text"
                         ref={burgerButtonRef}
                         onClick={() => setShowDropdowns(!showDropdowns)}><RxHamburgerMenu/>
                     </button>
@@ -97,7 +97,7 @@ const FilesPage = () => {
                 </div>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-6 my-4">
+            <div className="my-4 flex flex-wrap justify-center gap-6">
                 {files.map((file) =>
                     <FileCard key={file.fileId} file={file}/>
                 )}
