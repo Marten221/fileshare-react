@@ -1,45 +1,38 @@
 import React, {useEffect, useState} from "react";
-import {fetchExensions} from "../../services/fileService";
+import {fetchExtensions} from "../../services/fileService";
 import Dropdown from "./Dropdown";
+import {useQuery} from "@tanstack/react-query";
+import ErrorMessage from "../ErrorMessage";
 
 const ExtensionDropdown = ({onExtensionChange, defaultValue}) => {
-    const [extensions, setExtensions] = useState([]);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const loadExtensions = async () => {
-            try {
-                let data = await fetchExensions();
-                data = ["any", ...data]
-                setExtensions(data)
-                console.log("default")
-                console.log(defaultValue)
-                console.log(data)
-            } catch (err) {
-                setError(err.message);
-            }
-        };
 
-        loadExtensions();
-    }, []);
+    const {data: extensions, isFetched, isError, error} = useQuery({
+        queryKey: ["getExtensions"],
+        queryFn: fetchExtensions
+    })
 
     const generateOptions = () => {
-        return  extensions.map((extension) => (
+        const allExtensions = ["any", ...extensions]
+        return  allExtensions.map((extension) => (
             <option key={extension} value={extension}>.{extension}</option>
         ))
     };
 
-    if (error) return <p>Error: {error}</p>
+    if (isError) return <ErrorMessage message={error.message} />
 
-    return (
-        <Dropdown
-            id="extensions"
-            onChange={onExtensionChange}
-            defaultValue={defaultValue}
-            label="Extension:"
-            options={generateOptions()}
-        />
-    )
+    if (isFetched) {
+        return (
+            <Dropdown
+                id="extensions"
+                onChange={onExtensionChange}
+                defaultValue={defaultValue}
+                label="Extension:"
+                options={generateOptions()}
+            />
+        );
+    }
+
 };
 
 export default ExtensionDropdown;

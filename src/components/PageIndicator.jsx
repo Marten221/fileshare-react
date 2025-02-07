@@ -16,6 +16,11 @@ const AmountDropdown = ({setPage, totalPages, currentPage}) => {
         setPage((prevPage) => prevPage + 1);
     }
 
+    const handlePageChange = (e) => {
+        const page = Math.max(0, Math.min(e.target.value, totalPages));
+        setPage(page);
+    }
+
     return (
         <div className="flex justify-center items-center opacity-0 animate-fade-in mb-3"
              style={{animationDelay: `${2 * 50}ms`}}>
@@ -30,6 +35,7 @@ const AmountDropdown = ({setPage, totalPages, currentPage}) => {
                 type="number"
                 min="1"
                 value={currentPage}
+                onChange={(e) => handlePageChange(e)}
             />
 
             <button className={`bg-transparent p-2 ${currentPage < totalPages ? "" : "cursor-default opacity-0"}`}

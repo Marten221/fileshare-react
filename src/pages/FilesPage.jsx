@@ -14,7 +14,7 @@ import {useQuery} from "@tanstack/react-query";
 
 const FilesPage = () => {
     const [keyword, setKeyword] = useState("");
-    const [sorting, setSorting] = useState("name_ascending");
+    const [sorting, setSorting] = useState("date_descending");
     const [extension, setExtension] = useState("any");
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(15);
@@ -26,17 +26,18 @@ const FilesPage = () => {
     const navigate = useNavigate();
 
 
-    const handleSearch = async () => {
-        const data = await fetchFiles(keyword, sorting, extension, size, page - 1)
-        const files = data.content
-        setFiles(files)
-        setTotalPages(data.totalPages)
-    };
 
-    const {error} = useQuery({
+    const { data } = useQuery({
         queryKey: ['files', keyword, sorting, extension, size, page],
-        queryFn: handleSearch
+        queryFn: () => fetchFiles(keyword, sorting, extension, size, page - 1)
     });
+
+    useEffect(() => {
+        if (data) {
+           setFiles(data.content)
+           setTotalPages(data.totalPages)
+        }
+    }, [data]);
 
 
     //For closing the sorting menu when clicking outside of it or on the menu icon again

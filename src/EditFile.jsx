@@ -36,7 +36,6 @@ const EditFile = ({fileDescription}) => {
     })
 
     const handleDelete = () => {
-        console.log("delete function called")
         const confirmed = window.confirm("Are you sure you want to delete this file?\n" +
             "This action can't be undone.")
         if (confirmed) {

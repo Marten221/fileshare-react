@@ -22,7 +22,7 @@ export const fetchFiles = async (keyword, sorting, extension, size, page) => {
     return handleApiRequest(apiCall);
 };
 
-export const fetchExensions = async () => {
+export const fetchExtensions = async () => {
     const apiCall = () => apiClient.get('/public/extensions');
 
     return handleApiRequest(apiCall);

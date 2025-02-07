@@ -5,16 +5,19 @@ import {useQuery} from "@tanstack/react-query";
 import {getLoginStatus} from "../../services/userService";
 
 const Header = () => {
-
     const {data, isLoading} = useQuery({
         queryKey: ["loginStatus"],
-        queryFn: getLoginStatus
+        queryFn: getLoginStatus,
+        retryOnMount: false,
     })
 
 
     if (!isLoading) return (
         <div className="flex items-center justify-between h-12 bg-secondary">
-            <h1 className="mx-4">FileShare</h1>
+            <a
+                className="mx-4"
+                href="/files"
+            >FileShare</a>
             <div className="flex items-center mx-4">
                 {data.loggedIn && (<MemoryBar />)}
                 <UserIcon loggedIn={data.loggedIn}/>

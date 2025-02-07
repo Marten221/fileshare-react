@@ -6,28 +6,23 @@ import P2 from "../P2";
 
 const MemoryBar = () => {
     const [percentage, setPercentage] = useState(0)
-    const [error, setError] = useState("")
     const [open, setOpen] = useState(false)
 
 
     const handleCall = async () => {
-        try {
-            const data = await getDiskspace()
-            const totalSpace = data.totalMemory;
-            const availableSpace = totalSpace - data.usedMemory;
-            setPercentage(availableSpace / totalSpace * 100)
-            return data;
-        } catch (err) {
-            setError(err.message)
-        }
+        const data = await getDiskspace()
+        const totalSpace = data.totalMemory;
+        const availableSpace = totalSpace - data.usedMemory;
+        setPercentage(availableSpace / totalSpace * 100)
+        return data;
     }
 
-    const {data, isLoading} = useQuery({
+    const {data, isLoading, isError} = useQuery({
         queryKey: ["memoryInfo"],
         queryFn: handleCall
     })
 
-    if (error || isLoading) return <></>;
+    if (isError || isLoading) return <></>;
 
     return (
         <Popover
