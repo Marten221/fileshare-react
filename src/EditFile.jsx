@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import InputField from "./components/InputField";
-import ToggleButton from "./components/ToggleButton";
-import Button from "./components/Button";
+import ToggleButton from "./components/Buttons/ToggleButton";
+import Button from "./components/Buttons/Button";
 import {useMutation} from "@tanstack/react-query";
 import {deleteFile, updateFile} from "./services/fileService";
 import P2 from "./components/P2";

@@ -1,11 +1,10 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import InputField from "../components/InputField";
-import Button from "../components/Button";
+import Button from "../components/Buttons/Button";
 import {login} from "../services/userService";
 import ErrorMessage from "../components/ErrorMessage";
 import FormContainer from "../components/FormContainer";
-import {useQuery} from "@tanstack/react-query";
 
 const LoginPage = () => {
     const navigate = useNavigate();

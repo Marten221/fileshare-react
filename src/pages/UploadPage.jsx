@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {createFile} from "../services/fileService";
 import InputField from "../components/InputField";
-import Button from "../components/Button";
+import Button from "../components/Buttons/Button";
 import FormContainer from "../components/FormContainer";
-import ToggleButton from "../components/ToggleButton";
+import ToggleButton from "../components/Buttons/ToggleButton";
 import ErrorMessage from "../components/ErrorMessage";
 import {useNavigate} from "react-router-dom";
 

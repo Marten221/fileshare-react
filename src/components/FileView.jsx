@@ -1,11 +1,9 @@
 import React from "react";
-import Timestamp from "../Timestamp";
-import ErrorMessage from "../ErrorMessage";
+import Timestamp from "./Timestamp";
 import {MdAttachFile} from "react-icons/md";
-import Button from "../Button";
-import {CiLock} from "react-icons/ci";
-import {CiUnlock} from "react-icons/ci";
-import P2 from "../P2";
+import Button from "./Buttons/Button";
+import {CiLock, CiUnlock} from "react-icons/ci";
+import P2 from "./P2";
 
 const FileView = ({downloadMutation, file, isFetched}) => {
 

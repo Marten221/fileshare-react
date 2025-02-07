@@ -1,14 +1,16 @@
 import React, {useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {downloadFile, fetchFileDescription} from "../services/fileService";
-import FileView from "../components/FileView/FileView";
+import FileView from "../components/FileView";
 import FormContainer from "../components/FormContainer";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import ErrorMessage from "../components/ErrorMessage";
-import Button from "../components/Button";
+import Button from "../components/Buttons/Button";
 import EditFile from "../EditFile";
+import BackButton from "../components/Buttons/BackButton";
 
 const ViewFilePage = () => {
+    const navigate = useNavigate();
     const {fileId} = useParams();
     const [isEditing, setIsEditing] = useState(false)
 
@@ -52,6 +54,7 @@ const ViewFilePage = () => {
     if (isEditing) {
         return (
             <FormContainer>
+                <BackButton onClick={() => setIsEditing(false)} />
                 <EditFile
                     fileDescription={fileDescription}
                 />
@@ -61,6 +64,7 @@ const ViewFilePage = () => {
 
     return (
         <FormContainer>
+            <BackButton onClick={() => navigate("/files")} />
             <FileView
                 downloadMutation={downloadMutation}
                 file={fileDescription}

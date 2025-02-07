@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://192.168.1.160:8080'
+const API_BASE_URL = 'http://192.168.1.120:8080'
 
 const apiClient = axios.create({
     baseURL: API_BASE_URL,
@@ -14,7 +14,7 @@ apiClient.interceptors.request.use((config) => {
     return config;
 });
 
-apiClient.interceptors.request.use(
+/*apiClient.interceptors.request.use(
     (config) => {
         // Log the request details
         console.log("Outgoing request:", {
@@ -30,7 +30,7 @@ apiClient.interceptors.request.use(
         console.error("Request error:", error);
         return Promise.reject(error);
     }
-);
+);*/
 
 
 export default apiClient;
