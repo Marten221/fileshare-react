@@ -5,7 +5,7 @@ import Button from "./Buttons/Button";
 import {CiLock, CiUnlock} from "react-icons/ci";
 import P2 from "./P2";
 
-const FileView = ({downloadMutation, file, isFetched}) => {
+const FileView = ({downloadMutation, downloadPending, file, isFetched}) => {
 
     if (!isFetched) {
         return <p>Loading the file...</p>
@@ -35,7 +35,10 @@ const FileView = ({downloadMutation, file, isFetched}) => {
             )}
 
 
-            <Button onClick={() => downloadMutation.mutate()} label={isFetched ? "Download" : "Loading..."}></Button>
+            <Button
+                label="Download"
+                isLoading={downloadPending}
+                onClick={() => downloadMutation()}></Button>
         </div>
     );
 };

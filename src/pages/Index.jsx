@@ -16,7 +16,6 @@ const IndexPage = () => {
                       </span>
                 </a>
             </div>
-            <hr className="border-red-900"/>
         </>
     )
 };

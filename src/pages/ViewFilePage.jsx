@@ -34,7 +34,7 @@ const ViewFilePage = () => {
         window.URL.revokeObjectURL(url);
     };
 
-    const downloadMutation = useMutation({
+    const {mutate: downloadMutation, isPending} = useMutation({
         mutationFn: handleDownload,
         onError: (error) => {
             alert(error?.message);
@@ -67,6 +67,7 @@ const ViewFilePage = () => {
             <BackButton onClick={() => navigate("/files")} />
             <FileView
                 downloadMutation={downloadMutation}
+                downloadPending={isPending}
                 file={fileDescription}
                 isFetched={isFetched}
             />

@@ -3,8 +3,9 @@ import {FaRegUser} from "react-icons/fa6";
 import {Popover} from "react-tiny-popover";
 import UserIconPopoverContent from "./UserIconPopoverContent";
 
-const UserIcon = ({loggedIn}) => {
+const UserIcon = ({loggedIn, userData}) => {
     const [open, setOpen] = useState(false)
+
 
 
     return (
@@ -13,7 +14,10 @@ const UserIcon = ({loggedIn}) => {
             onClickOutside={() => setOpen(false)}
             positions={['bottom', 'left']}
             content={
-                <UserIconPopoverContent loggedIn={loggedIn}/>
+                <UserIconPopoverContent
+                    userData={userData}
+                    loggedIn={loggedIn}
+                />
             }
         >
             <div

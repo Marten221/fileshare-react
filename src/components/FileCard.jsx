@@ -8,6 +8,12 @@ import {CiLock, CiUnlock} from "react-icons/ci";
 const FileCard = ({file}) => {
     const navigate = useNavigate();
 
+    const createCardName = () => {
+        let fileName = file.fileName;
+        if (fileName.length > 25) fileName = fileName.substring(0, 25)  + "..";
+        return  fileName + "." + file.fileExt;
+    };
+
     return (
         <button className="border border-solid border-accent rounded
             w-full sm:w-80 md:w-96 lg:w-80 h-52 sm:h-64 lg:h-52
@@ -16,7 +22,7 @@ const FileCard = ({file}) => {
                 onClick={() => navigate(`/file/${file.fileId}`)}>
 
             <div className="flex flex-col items-center justify-center">
-                <h3 className="text-lg">{file.fileName}.{file.fileExt}</h3>
+                <h3 className="text-lg">{createCardName()}</h3>
                 <div className="mt-3 mb-1 flex gap-3">
                     <Timestamp timestamp={file.timestamp}></Timestamp>
                     <P2>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://192.168.1.120:8080'
+const API_BASE_URL = 'https://ojasaar.com/fileapi'
 
 const apiClient = axios.create({
     baseURL: API_BASE_URL,

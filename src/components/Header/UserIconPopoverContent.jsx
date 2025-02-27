@@ -1,15 +1,9 @@
 import React from 'react'
-import {getUserInfo, logOut} from "../../services/userService";
+import {logOut} from "../../services/userService";
 import {useNavigate} from "react-router-dom";
-import {useQuery} from "@tanstack/react-query";
 
-const UserIconPopoverContent = ({loggedIn}) => {
+const UserIconPopoverContent = ({userData, loggedIn}) => {
     const navigate = useNavigate();
-
-    const {data, isLoading} = useQuery({
-        queryKey: ["userInfo"],
-        queryFn: getUserInfo
-    })
 
     const handleLogout = () => {
         logOut();
@@ -18,7 +12,7 @@ const UserIconPopoverContent = ({loggedIn}) => {
 
     if (loggedIn) return (
         <div className="m-3 flex flex-col gap-3 rounded border p-2 bg-secondary border-primary">
-            {!isLoading && (<p>Hello, {data.firstName}</p>)}
+            <p>Hello, {userData.firstName}</p>
             <button
                 className="rounded border border-primary"
                 onClick={handleLogout}

@@ -30,7 +30,7 @@ const MemoryBar = () => {
             positions={['bottom', 'left']}
             content={
                 <div className="m-3 rounded border p-2 bg-secondary border-primary">
-                    <P2>Used memory: {data.usedMemoryHumanReadable}</P2>
+                    <P2>Used memory: {data.usedMemoryHumanReadable ? data.usedMemoryHumanReadable : "0.00 GB"}</P2>
                     <P2>Available memory: {data.totalMemoryHumanReadable}</P2>
                 </div>
             }

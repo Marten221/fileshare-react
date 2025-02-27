@@ -6,7 +6,7 @@ const BackButton = ({onClick}) => {
     return (
         <>
             <button
-                className="absolute top-4 left-4 text-2xl text-accent"
+                className="absolute top-3 left-1 text-2xl text-primary"
                 onClick={onClick}
             ><TiArrowBackOutline/></button>
         </>

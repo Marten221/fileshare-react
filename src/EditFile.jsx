@@ -37,10 +37,10 @@ const EditFile = ({fileDescription}) => {
 
     const handleDelete = () => {
         const confirmed = window.confirm("Are you sure you want to delete this file?\n" +
-            "This action can't be undone.")
+            "This action can't be undone.");
         if (confirmed) {
             deleteFile(updatedFile.fileId);
-            navigate('/files')
+            navigate('/files');
         }
     }
 

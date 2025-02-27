@@ -6,6 +6,7 @@ import FormContainer from "../components/FormContainer";
 import ToggleButton from "../components/Buttons/ToggleButton";
 import ErrorMessage from "../components/ErrorMessage";
 import {useNavigate} from "react-router-dom";
+import BackButton from "../components/Buttons/BackButton";
 
 const UploadPage = () => {
     const navigate = useNavigate();
@@ -42,6 +43,7 @@ const UploadPage = () => {
 
     return (
         <FormContainer>
+            <BackButton onClick={() => navigate("/files")} />
             <form className="flex flex-col gap-2"
                   onSubmit={handleSubmit}>
 
@@ -75,10 +77,10 @@ const UploadPage = () => {
                     <p className="mx-2">Public</p>
                 </ToggleButton>
 
-                <Button label="Upload" type="submit"/>
-                {loading && (
-                    <p>Uploading...</p>
-                )}
+                <Button
+                    label="Upload"
+                    isLoading={loading}
+                    type="submit"/>
             </form>
             {error && <ErrorMessage message={error}></ErrorMessage>}
         </FormContainer>
