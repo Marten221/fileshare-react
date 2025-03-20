@@ -8,17 +8,17 @@ export const createFile = async (formData) => {
     return handleApiRequest(apiCall)
 };
 
-export const fetchFiles = async (keyword, sorting, extension, size, page) => {
+export const fetchFiles = async (keyword, sorting, owner, extension, size, page) => {
     const apiCall = () => apiClient.get('/public/findfile', {
         params: {
             keyword,
             sorting,
+            owner,
             extension,
             size,
             page
         }
     });
-
     return handleApiRequest(apiCall);
 };
 

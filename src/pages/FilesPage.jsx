@@ -11,10 +11,13 @@ import {IoCloudUploadOutline} from "react-icons/io5";
 import {useNavigate} from "react-router-dom";
 import Header from "../components/Header/Header";
 import {useQuery} from "@tanstack/react-query";
+import OwnerDropdown from "../components/Dropdowns/OwnerDropdown";
+import {getLoginStatus} from "../services/userService";
 
 const FilesPage = () => {
     const [keyword, setKeyword] = useState("");
     const [sorting, setSorting] = useState("date_descending");
+    const [owner, setOwner] = useState("all")
     const [extension, setExtension] = useState("any");
     const [page, setPage] = useState(1);
     const [size, setSize] = useState(15);
@@ -24,12 +27,25 @@ const FilesPage = () => {
     const dropdownRef = useRef(null);
     const burgerButtonRef = useRef(null);
     const navigate = useNavigate();
+    const [loggedIn, setLoggedIn] = useState(false)
 
-
+    const {data: sessionStatusData, isFetched: sessionDataFetched,} = useQuery({
+        queryKey: ["loginStatus"],
+        queryFn: getLoginStatus,
+        retryOnMount: false,
+    })
+    useEffect(() => {
+        if (sessionDataFetched && sessionStatusData) {
+            setLoggedIn(sessionStatusData.loggedIn);
+        }
+        if (loggedIn) {
+            setOwner("me");
+        }
+    }, [sessionStatusData, sessionDataFetched]);
 
     const { data } = useQuery({
-        queryKey: ['files', keyword, sorting, extension, size, page],
-        queryFn: () => fetchFiles(keyword, sorting, extension, size, page - 1)
+        queryKey: ['files', keyword, sorting, owner, extension, size, page],
+        queryFn: () => fetchFiles(keyword, sorting, owner, extension, size, page - 1)
     });
 
     useEffect(() => {
@@ -58,7 +74,7 @@ const FilesPage = () => {
 
     return (
         <>
-            <Header></Header>
+            <Header isFetched={sessionDataFetched} loggedIn={loggedIn}/>
             <div className="relative">
                 <div className="flex flex-wrap items-center justify-center py-3">
                     <button className="left-3 flex items-center border border-solid border-accent rounded mx-2 px-2 py-1
@@ -87,6 +103,9 @@ const FilesPage = () => {
                                     ${showDropdowns ? "opacity-100 visible" : "opacity-0 invisible"}`}
                      ref={dropdownRef}>
                     <SortingDropdown defaultValue={sorting} onSortChange={setSorting}/>
+                    {loggedIn &&(
+                        <OwnerDropdown defaultValue={owner} onOwnerChange={setOwner}/>
+                    )}
                     <ExtensionDropdown defaultValue={extension} onExtensionChange={setExtension}/>
                     <AmountDropdown
                         defaultValue={size}

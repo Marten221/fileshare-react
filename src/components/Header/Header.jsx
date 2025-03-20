@@ -2,18 +2,14 @@ import React from "react";
 import MemoryBar from "./MemoryBar";
 import UserIcon from "./UserIcon";
 import {useQuery} from "@tanstack/react-query";
-import {getLoginStatus, getUserInfo} from "../../services/userService";
+import {getUserInfo} from "../../services/userService";
 
-const Header = () => {
-    const {data, isLoading} = useQuery({
-        queryKey: ["loginStatus"],
-        queryFn: getLoginStatus,
-        retryOnMount: false,
-    })
-
+const Header = ({isFetched, loggedIn}) => {
     const {data: userData} = useQuery({
         queryKey: ["userInfo"],
-        queryFn: getUserInfo
+        queryFn: getUserInfo,
+        retryOnMount: false,
+        enabled: loggedIn
     })
 
 
@@ -24,13 +20,13 @@ const Header = () => {
                 href="/files"
             >FileShare</a>
 
-            {!isLoading && (
+            {isFetched && (
                 <div className="mx-4 flex items-center">
-                    {data.loggedIn && (
+                    {loggedIn && (
                         <MemoryBar/>
                     )}
                     <UserIcon
-                        loggedIn={data.loggedIn}
+                        loggedIn={loggedIn}
                         userData={userData}
                     />
                 </div>
