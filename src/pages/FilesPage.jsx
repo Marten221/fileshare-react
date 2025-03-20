@@ -38,10 +38,14 @@ const FilesPage = () => {
         if (sessionDataFetched && sessionStatusData) {
             setLoggedIn(sessionStatusData.loggedIn);
         }
-        if (loggedIn) {
-            setOwner("me");
-        }
     }, [sessionStatusData, sessionDataFetched]);
+    useEffect(() => {
+        if (loggedIn === true) {
+            setOwner("me");
+        } else {
+            setOwner("all");
+        }
+    }, [loggedIn]);
 
     const { data } = useQuery({
         queryKey: ['files', keyword, sorting, owner, extension, size, page],

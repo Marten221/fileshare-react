@@ -1,6 +1,6 @@
 import React from "react";
 
-const Dropdown = ({id, onChange, defaultValue, label, options}) => {
+const Dropdown = ({id, onChange, value, label, options}) => {
 
     return (
         <div className="flex flex-col">
@@ -8,7 +8,7 @@ const Dropdown = ({id, onChange, defaultValue, label, options}) => {
             <select className="m-1 w-40 rounded border p-1 bg-secondary border-accent"
                     id={id}
                     onChange={(e) => onChange(e.target.value)}
-                    defaultValue={defaultValue}>
+                    value={value}>
 
                 {options}
             </select>

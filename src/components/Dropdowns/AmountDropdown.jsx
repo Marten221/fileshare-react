@@ -1,7 +1,7 @@
 import React from "react";
 import Dropdown from "./Dropdown";
 
-const AmountDropdown = ({onAmountChange, purpose, amountList, defaultValue}) => {
+const AmountDropdown = ({onAmountChange, purpose, amountList, value}) => {
 
     const generateOptions = () => {
         return amountList.map((option) => (
@@ -16,7 +16,7 @@ const AmountDropdown = ({onAmountChange, purpose, amountList, defaultValue}) => 
             <Dropdown
                 id="page"
                 onChange={onAmountChange}
-                defaultValue={defaultValue}
+                value={value}
                 label={purpose + ":"}
                 options={generateOptions()}
             />
