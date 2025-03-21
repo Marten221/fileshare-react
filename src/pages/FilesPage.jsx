@@ -7,12 +7,11 @@ import AmountDropdown from "../components/Dropdowns/AmountDropdown";
 import FileCard from "../components/FileCard";
 import PageIndicator from "../components/PageIndicator";
 import {RxHamburgerMenu} from "react-icons/rx";
-import {IoCloudUploadOutline} from "react-icons/io5";
-import {useNavigate} from "react-router-dom";
 import Header from "../components/Header/Header";
 import {useQuery} from "@tanstack/react-query";
 import OwnerDropdown from "../components/Dropdowns/OwnerDropdown";
 import {getLoginStatus} from "../services/userService";
+import UploadButton from "../components/Buttons/UploadButton";
 
 const FilesPage = () => {
     const [keyword, setKeyword] = useState("");
@@ -26,7 +25,6 @@ const FilesPage = () => {
     const [showDropdowns, setShowDropdowns] = useState(false)
     const dropdownRef = useRef(null);
     const burgerButtonRef = useRef(null);
-    const navigate = useNavigate();
     const [loggedIn, setLoggedIn] = useState(false)
 
     const {data: sessionStatusData, isFetched: sessionDataFetched,} = useQuery({
@@ -81,12 +79,7 @@ const FilesPage = () => {
             <Header isFetched={sessionDataFetched} loggedIn={loggedIn}/>
             <div className="relative">
                 <div className="flex flex-wrap items-center justify-center py-3">
-                    <button className="left-3 flex items-center border border-solid border-accent rounded mx-2 px-2 py-1
-                                        hover:bg-accent hover:text-text transition-all duration-300"
-                            onClick={() => navigate(`/upload`)}
-                    >
-                        <IoCloudUploadOutline/>
-                    </button>
+                    {loggedIn && (<UploadButton />)}
                     <InputField
                         id="keyword"
                         type="text"
