@@ -1,6 +1,5 @@
 import React from "react";
-import { MdDateRange } from "react-icons/md";
-import { MdOutlineDateRange } from "react-icons/md";
+import {MdOutlineDateRange} from "react-icons/md";
 
 const Timestamp = ({timestamp}) => {
     return (

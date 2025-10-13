@@ -3,13 +3,13 @@ import {handleApiRequest} from "../utils/apiUtils";
 
 
 export const createFile = async (formData) => {
-    const apiCall = () => apiClient.post('/upload', formData);
+    const apiCall = () => apiClient.post('/file', formData);
 
     return handleApiRequest(apiCall)
 };
 
 export const fetchFiles = async (keyword, sorting, owner, extension, size, page) => {
-    const apiCall = () => apiClient.get('/public/findfile', {
+    const apiCall = () => apiClient.get('/public/files', {
         params: {
             keyword,
             sorting,
@@ -35,7 +35,7 @@ export const fetchFileDescription = async (fileId) => {
 }
 
 export const downloadFile = async (fileId) => {
-    const apiCall = () => apiClient.get(`/public/download/${fileId}`, {
+    const apiCall = () => apiClient.get(`/public/filecontent/${fileId}`, {
         responseType: 'blob'
     })
 
@@ -52,13 +52,13 @@ export const updateFile = async (updatedFile) => {
     formData.append('description', updatedFile.description);
     formData.append('public', updatedFile.public);
 
-    const apiCall = () => apiClient.put('/update', formData)
+    const apiCall = () => apiClient.put('/file', formData)
 
     return handleApiRequest(apiCall);
 };
 
 export const deleteFile = async (fileId) => {
-    const apiCall = () => apiClient.delete(`/delete/${fileId}`)
+    const apiCall = () => apiClient.delete(`/file/${fileId}`)
 
     return handleApiRequest(apiCall);
 }
