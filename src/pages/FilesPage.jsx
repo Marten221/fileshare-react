@@ -40,13 +40,6 @@ const FilesPage = () => {
             setLoggedIn(sessionStatusData.loggedIn);
         }
     }, [sessionStatusData, sessionDataFetched]);
-    useEffect(() => {
-        if (loggedIn === true) {
-            setOwner("me");
-        } else {
-            setOwner("all");
-        }
-    }, [loggedIn]);
 
     const { data } = useQuery({
         queryKey: ['files', keyword, sorting, owner, extension, size, page],
@@ -69,7 +62,6 @@ const FilesPage = () => {
             size
         });
     }, [keyword, sorting, owner, extension, page, size, setSearchParams]);
-
 
     //For closing the sorting menu when clicking outside of it or on the menu icon again
     useEffect(() => {

@@ -1,7 +1,7 @@
 import React from "react";
 import Dropdown from "./Dropdown";
 
-const SortingDropdown = ({onSortChange, value}) => {
+const SortingDropdown = ({onSortChange, defaultValue}) => {
 
     const sortingOptions = [
         {value: "name_ascending", label: "Name ascending"},
@@ -27,7 +27,7 @@ const SortingDropdown = ({onSortChange, value}) => {
             onChange={onSortChange}
             label="Sort by:"
             options={generateOptions()}
-            value={value}
+            defaultValue={defaultValue}
         />
     );
 };

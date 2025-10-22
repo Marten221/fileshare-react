@@ -4,8 +4,7 @@ import Dropdown from "./Dropdown";
 import {useQuery} from "@tanstack/react-query";
 import ErrorMessage from "../ErrorMessage";
 
-const ExtensionDropdown = ({onExtensionChange, value}) => {
-
+const ExtensionDropdown = ({onExtensionChange, defaultValue}) => {
 
     const {data: extensions, isFetched, isError, error} = useQuery({
         queryKey: ["getExtensions"],
@@ -26,7 +25,7 @@ const ExtensionDropdown = ({onExtensionChange, value}) => {
             <Dropdown
                 id="extensions"
                 onChange={onExtensionChange}
-                value={value}
+                defaultValue={defaultValue}
                 label="Extension:"
                 options={generateOptions()}
             />

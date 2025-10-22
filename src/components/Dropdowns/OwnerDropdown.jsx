@@ -1,12 +1,11 @@
 import React from "react";
 import Dropdown from "./Dropdown";
 
-const OwnerDropdown = ({onOwnerChange, value}) => {
+const OwnerDropdown = ({onOwnerChange, defaultValue}) => {
 
     const sortingOptions = [
         {value: "me", label: "Me"},
         {value: "all", label: "All"},
-
     ]
 
     const generateOptions = () => {
@@ -24,7 +23,7 @@ const OwnerDropdown = ({onOwnerChange, value}) => {
             onChange={onOwnerChange}
             label="Owner:"
             options={generateOptions()}
-            value={value}
+            defaultValue={defaultValue}
         />
     );
 };
