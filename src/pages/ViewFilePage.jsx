@@ -64,7 +64,7 @@ const ViewFilePage = () => {
 
     return (
         <FormContainer>
-            <BackButton onClick={() => navigate("/files")} />
+            <BackButton onClick={() => navigate(-1)} />
             <FileView
                 downloadMutation={downloadMutation}
                 downloadPending={isPending}

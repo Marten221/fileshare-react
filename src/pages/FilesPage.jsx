@@ -12,14 +12,17 @@ import {useQuery} from "@tanstack/react-query";
 import OwnerDropdown from "../components/Dropdowns/OwnerDropdown";
 import {getLoginStatus} from "../services/userService";
 import UploadButton from "../components/Buttons/UploadButton";
+import {useSearchParams} from "react-router-dom";
 
 const FilesPage = () => {
-    const [keyword, setKeyword] = useState("");
-    const [sorting, setSorting] = useState("date_descending");
-    const [owner, setOwner] = useState("all")
-    const [extension, setExtension] = useState("any");
-    const [page, setPage] = useState(1);
-    const [size, setSize] = useState(15);
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const [keyword, setKeyword] = useState(searchParams.get("keyword") || "");
+    const [sorting, setSorting] = useState(searchParams.get("sorting") || "date_descending");
+    const [owner, setOwner] = useState(searchParams.get("owner") || "all");
+    const [extension, setExtension] = useState(searchParams.get("extension") || "any");
+    const [page, setPage] = useState(Number(searchParams.get("page")) || 1);
+    const [size, setSize] = useState(Number(searchParams.get("size")) || 15);
     const [files, setFiles] = useState([])
     const [totalPages, setTotalPages] = useState(1)
     const [showDropdowns, setShowDropdowns] = useState(false)
@@ -56,6 +59,16 @@ const FilesPage = () => {
            setTotalPages(data.totalPages)
         }
     }, [data]);
+    useEffect(() => {
+        setSearchParams({
+            keyword,
+            sorting,
+            owner,
+            extension,
+            page,
+            size
+        });
+    }, [keyword, sorting, owner, extension, page, size, setSearchParams]);
 
 
     //For closing the sorting menu when clicking outside of it or on the menu icon again
