@@ -3,12 +3,7 @@ import {handleApiRequest} from "../utils/apiUtils";
 
 export const login = async (user) => {
     const apiCall = () => apiClient.post('/public/login', user);
-    const data = await handleApiRequest(apiCall);
-
-    const token = data.token;
-    if (token) { // TODO: make it a function and store in cookies instead of storage
-        localStorage.setItem('authToken', token);
-    }
+    await handleApiRequest(apiCall);
 };
 
 export const register = async (registrationCode, user) => {
@@ -17,12 +12,7 @@ export const register = async (registrationCode, user) => {
             'X-Registration-Code': registrationCode,
         }
     })
-    const data = await handleApiRequest(apiCall);
-
-    const token = data.token;
-    if (token) {
-        localStorage.setItem('authToken', token);
-    }
+    await handleApiRequest(apiCall);
 };
 
 export const getDiskspace = async () => {
@@ -40,6 +30,6 @@ export const getUserInfo = async () => {
     return await handleApiRequest(apiCall);
 };
 
-export const logOut = () => {
-    localStorage.removeItem('authToken');
+export const logOut = async () => {
+    await apiClient.post('/public/logout'); // or whatever your endpoint is
 };
