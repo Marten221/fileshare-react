@@ -35,16 +35,18 @@ const FilesPage = () => {
         queryFn: getLoginStatus,
         retryOnMount: false,
     })
-    useEffect(() => {
-        if (sessionDataFetched && sessionStatusData) {
-            setLoggedIn(sessionStatusData.loggedIn);
-        }
-    }, [sessionStatusData, sessionDataFetched]);
 
     const { data } = useQuery({
         queryKey: ['files', keyword, sorting, owner, extension, size, page],
         queryFn: () => fetchFiles(keyword, sorting, owner, extension, size, page - 1)
     });
+
+
+    useEffect(() => {
+        if (sessionDataFetched && sessionStatusData) {
+            setLoggedIn(sessionStatusData.loggedIn);
+        }
+    }, [sessionStatusData, sessionDataFetched]);
 
     useEffect(() => {
         if (data) {
@@ -97,7 +99,6 @@ const FilesPage = () => {
                         ref={burgerButtonRef}
                         onClick={() => setShowDropdowns(!showDropdowns)}><RxHamburgerMenu/>
                     </button>
-                    {/* TODO: move burger menu to a separate component.*/}
                 </div>
 
                 <div className={`z-40 absolute top-full flex flex-col gap-2 left-1/2 -translate-x-1/2 

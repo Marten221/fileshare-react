@@ -7,22 +7,21 @@ import IndexPage from "./pages/Index";
 import FilesPage from "./pages/FilesPage";
 import UploadPage from "./pages/UploadPage";
 import ViewFilePage from "./pages/ViewFilePage";
+import DemoWrapper from "./pages/DemoWrapper";
 
 function App() {
     return (
-        <>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<IndexPage/>}></Route>
-                    <Route path="/login" element={<LoginPage/>}></Route>
-                    <Route path="/register" element={<RegisterPage/>}></Route>
-                    <Route path="/files" element={<FilesPage/>}></Route>
-                    {/*TODO: add protection to route */}
-                    <Route path="/upload" element={<UploadPage/>}></Route>
-                    <Route path="/file/:fileId" element={<ViewFilePage/>}></Route>
-                </Routes>
-            </Router>
-        </>
+        <Router>
+            <Routes>
+                <Route path="/" element={<IndexPage/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/login/demo" element={<DemoWrapper/>}/>
+                <Route path="/register" element={<RegisterPage/>}/>
+                <Route path="/files" element={<FilesPage/>}/>
+                <Route path="/upload" element={<UploadPage/>}/>
+                <Route path="/file/:fileId" element={<ViewFilePage/>}/>
+            </Routes>
+        </Router>
     );
 }
 
